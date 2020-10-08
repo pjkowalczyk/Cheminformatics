@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Paul J Kowalczyk, PhD" />
+  <meta name="dcterms.date" content="2020-07-17" />
+  <title>Cheminformatics … @Solvay</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="DraftPresentation_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="DraftPresentation_files/reveal.js-3.3.0.1/css/theme/serif.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="reveal.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="DraftPresentation_files/header-attrs-2.2/header-attrs.js"></script>
+    <link href="DraftPresentation_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="DraftPresentation_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Cheminformatics … <span class="citation" data-cites="Solvay">@Solvay</span></h1>
+    <h2 class="author">Paul J Kowalczyk, PhD</h2>
+    <h3 class="date">2020-07-17</h3>
+</section>
+
+<section id="section" class="slide level2">
+<h2></h2>
+<br>
+<center>
+<img src="images/Timeline.png" alt="Timeline..." width="1000"/>
+</center>
+</section>
+<section><section id="cheminformatics" class="title-slide slide level1"><h1>Cheminformatics</h1><h5 align="right">
+<small><a href="https://www.nature.com/subjects/cheminformatics" class="uri">https://www.nature.com/subjects/cheminformatics</a></small>
+</h5>
+<p>Cheminformatics is the use of computational and informational techniques to understand problems of chemistry.</p>
+<h5 align="right">
+<small><a href="https://www.acs.org/content/acs/en/careers/college-to-career/chemistry-careers/cheminformatics.html" class="uri">https://www.acs.org/content/acs/en/careers/college-to-career/chemistry-careers/cheminformatics.html</a></small>
+</h5>
+<ul>
+<li>Develop <font color = 'red'>methods for data mining</font> and performing statistical analysis of large datasets<br />
+</li>
+<li>Develop <font color = 'red'>methods for archiving and retrieving data</font> on molecular structures, reaction pathways, molecular interactions, or other phenomena<br />
+</li>
+<li>Collaborate with laboratory researchers to <font color = 'red'>solve problems using data searching and retrieval</font><br />
+</li>
+<li>Collaborate with researchers in various fields to <font color = 'red'>integrate information from a variety of disciplines and sources</font><br />
+</li>
+<li><font color = 'red'>Identify chemical</font> property classifications and <font color = 'red'>trends</font> from large databases using mathematical techniques</li>
+</ul></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<center>
+<h1>
+Chemistry
+</h1>
+<h1>
++ Machine Learning
+</h1>
+<h1>
++ Data Mining
+</h1>
+<h1>
++ Data Curation
+</h1>
+<hr width="42%">
+<h1>
+Cheminformatics
+</h1>
+</center>
+</section></section>
+<section><section id="machine-learning-workflows" class="title-slide slide level1"><h1>Machine Learning Workflows</h1><font size="4">
+<h2>
+<b>CR</b>oss-<b>I</b>ndustry <b>S</b>tandard <b>P</b>rocess for <b>D</b>ata <b>M</b>ining
+</h2>
+</font>
+<center>
+<img src="images/CRISPDM_Process_Diagram.png" alt="CRISP-DM" width="500"/>
+</center></section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<h2>
+R for Data Science
+</h2>
+<font size="4">
+<h2>
+H. Wickham &amp; G. Grolemund; <b>ISBN-13:</b> 978-1491910399
+</h2>
+</font>
+<center>
+<br><br><br><br> <img src="images/R4DS.png" alt="R4DS" width="600"/>
+</center>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<h2>
+R in Action
+</h2>
+<center>
+<img src="images/Kabacoff.jpg" alt="Kabacoff" width="750"/>
+</center>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<h2>
+Constructing a Cheminformatics Predictor
+</h2>
+<h5>
+X. Yang, &amp;c., <i>Chem. Rev.</i> 2019, <b>119</b>, 10520-10594.
+</h5>
+<center>
+<br><br> <img src="images/Workflow.jpg" alt="Workflow" width="750"/>
+</center>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<h2>
+Boston Housing Data…
+</h2>
+<center>
+<img src="images/BostonHousing.png" alt="Boston Housing Data" width="750"/>
+</center>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<h2>
+…compared to a representative cheminformatics dataset
+</h2>
+<center>
+<img src="images/BostonBCF.png" alt="Boston Housing and BCF" width="750"/>
+</center>
+</section></section>
+<section id="in-the-beginning" class="title-slide slide level1"><h1>In the beginning …</h1><p><img src="images/Hansch.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><small>C. Hansch &amp; T. Fujita, <em>J. Am. Chem. Soc.</em> 1964, <strong>86</strong>(8), 1616-1626.</small></p></section>
+<section id="topics" class="title-slide slide level1"><h1>Topics</h1><ul>
+<li>Representing molecules<br />
+</li>
+<li>Calculating features &amp; fingerprints<br />
+</li>
+<li>Similarity<br />
+</li>
+<li>QSAR &amp; QSPR: regression &amp; classification<br />
+</li>
+<li>Structure alerts<br />
+</li>
+<li>Read across<br />
+</li>
+<li>Network analysis</li>
+</ul></section>
+<section><section id="representing-molecules" class="title-slide slide level1"><h1>Representing Molecules</h1><center>
+<img src="images/Artemisinin.svg" alt="Artemisinin" width="200"/>
+</center>
+<p><font size="4"> Canonical SMILES:<br> <b>C[<a href="mailto:C@@H" class="email">C@@H</a>]1CC[<a href="mailto:C@H" class="email">C@H</a>]2<a href="C">C@<span class="citation" data-cites="H">@H</span></a>C(=O)O[<a href="mailto:C@@H" class="email">C@@H</a>]3O[C@]4(C)CC[<a href="mailto:C@@H" class="email">C@@H</a>]1[<a href="mailto:C@@" class="email">C@@</a>]23OO4</b> <br> Standard InChI: <br> <b>InChI=1S/C15H22O5/c1-8-4-5-11-9(2)12(16)17-13-15(11)10(8)6-7-14(3,18-13)19-20-15/h8-11,13H,4-7H2,1-3H3/t8-,9-,10+,11+,13-,14+,15-/m1/s1</b> <br> Standard InChI Key: <br> <b>BLUAFEHZUWYNDE-DKGJTOOQSA-N</b> <br><br> InChI = <font color='red' size="4">In</font>ternational <font color='red' size="4">Ch</font>emical <font color='red' size="4">I</font>dentifier</font> </font></p></section>
+<section id="artemisinin-chembl567597-sdfile" class="slide level2">
+<h2>Artemisinin (CHEMBL567597) SDFile</h2>
+<font size="3">
+<pre>
+  SciTegic01161211242D
+
+ 23 26  0  0  0  0            999 V2000
+    8.9610  -14.2763    0.0000 C   0  0
+    9.7561  -14.0715    0.0000 C   0  0
+    8.6232  -15.0326    0.0000 C   0  0  2  0  0  0
+    9.0079  -15.7655    0.0000 O   0  0
+   10.4145  -14.5618    0.0000 C   0  0  1  0  0  0
+   11.8718  -15.3337    0.0000 C   0  0
+   11.8411  -14.5088    0.0000 C   0  0
+   11.1102  -14.1227    0.0000 C   0  0  1  0  0  0
+   11.1714  -15.7725    0.0000 C   0  0  2  0  0  0
+   10.4429  -15.3836    0.0000 C   0  0  1  0  0  0
+    9.7513  -15.8203    0.0000 C   0  0  2  0  0  0
+    9.7780  -16.6436    0.0000 O   0  0
+   10.5025  -17.0284    0.0000 C   0  0
+   11.2043  -16.5940    0.0000 C   0  0  2  0  0  0
+    7.7986  -15.0587    0.0000 C   0  0
+    9.6477  -15.2738    0.0000 O   0  0
+    9.3989  -14.4902    0.0000 O   0  0
+   10.4064  -13.7357    0.0000 H   0  0
+   11.8824  -16.1817    0.0000 H   0  0
+   10.5348  -17.8530    0.0000 O   0  0
+    9.1585  -16.3974    0.0000 H   0  0
+   11.0783  -13.2983    0.0000 C   0  0
+   11.9339  -16.9781    0.0000 C   0  0
+  2  5  1  0
+  1  3  1  0
+  9 14  1  0
+ 10 11  1  0
+ 11 12  1  0
+ 13 12  1  0
+ 13 14  1  0
+  1  2  1  0
+  3 15  1  1
+  5  8  1  0
+ 10 16  1  6
+  9  6  1  0
+ 16 17  1  0
+  3 17  1  0
+  6  7  1  0
+  5 18  1  6
+  7  8  1  0
+  9 19  1  6
+  9 10  1  0
+ 13 20  2  0
+  3  4  1  0
+ 11 21  1  1
+  4 11  1  0
+  8 22  1  6
+  5 10  1  0
+ 14 23  1  1
+M  END
+> <chembl_id>
+CHEMBL567597
+</pre>
+<p></font></p>
+</section></section>
+<section id="calculating-fingerprints" class="title-slide slide level1"><h1>Calculating fingerprints</h1><center>
+<img src="images/Fingerprints.png" alt="Fingerprints" width="800"/>
+</center></section>
+<section><section id="calculating-features" class="title-slide slide level1"><h1>Calculating features</h1><center>
+<img src="images/Features01.png" alt="Features01" width="1200"/>
+</center></section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<center>
+<img src="images/Features02.png" alt="Features02" width="800"/>
+</center>
+</section></section>
+<section><section id="similarity" class="title-slide slide level1"><h1>Similarity</h1><p><font color = 'blue'>similar property principle</font>: structurally similar molecules tend to have similar properties</p>
+<center>
+<img src="images/ThrombinSimilarity.png" alt="Thrombin Inhibitor Similarity" width="600"/>
+</center></section>
+<section id="similarity-measures" class="slide level2">
+<h2>Similarity measures</h2>
+<p>Tanimoto coefficient (<span class="math inline">\(T_{c}\)</span>):</p>
+<p><span class="math display">\[T_{c} = \frac{c}{a + b - c}\]</span><br />
+a = bits set in molecule A<br />
+b = bits set in molecule B<br />
+c = bits set in <em>both</em> molecules A and B</p>
+<center>
+<img src="images/Tanimoto.png" alt="Tanimoto Coefficient" width="600"/>
+</center>
+</section>
+<section id="similarity-searching" class="slide level2">
+<h2>Similarity searching</h2>
+<p><br><br> Originally developed as a complement to substructure searching</p>
+<ul>
+<li>no need for a detailed pharmacophore<br />
+</li>
+<li>control over volume of output</li>
+</ul>
+<p><br><br> Rapidly adopted, both efficient and effective; basic ideas extended to other applications</p>
+<ul>
+<li>cluster analysis<br />
+</li>
+<li>molecular diversity analysis</li>
+</ul>
+</section>
+<section id="diversity-analysis" class="slide level2">
+<h2>Diversity analysis</h2>
+<ul>
+<li><p>Similarity is a property of a pair of molecules; diversity is a property of a set of molecules<br />
+</p></li>
+<li><p>Idea of choosing a representative subset from a large database, <em>e.g.</em>, for biological testing<br />
+</p></li>
+<li><p>Typical algorithm to select a set of dissimilar (<em>e.g.</em>, 1-Tanimoto) molecules from a database:</p>
+<ol type="1">
+<li>Select a molecule and place it in a subset<br />
+</li>
+<li>Calculate dissimilarity between each remaining molecule and the subset molecules<br />
+</li>
+<li>Choose next molecule that is most dissimilar to the subset molecules<br />
+</li>
+<li>If less than <em>n</em> subset molecules then return to 2</li>
+</ol></li>
+</ul>
+</section></section>
+<section><section id="qsar-qspr-regression-classification" class="title-slide slide level1"><h1>QSAR &amp; QSPR: regression &amp; classification</h1><p>To successfully apply machine learning, one needs</p>
+<ul>
+<li>a large data set of molecules,<br />
+</li>
+<li>a molecular encoding,<br />
+</li>
+<li>a label per molecule in the data set, and<br />
+</li>
+<li>an algorithm to train a model.</li>
+</ul>
+<p>Then, one can make predictions for new molecules.</p></section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<center>
+<p>Stamford slide deck [34 - 56]</p>
+C&gt;&gt;Users&gt;&gt;us16120&gt;&gt;Projects&gt;&gt;Stamford
+</center>
+</section></section>
+<section><section id="shap-shapley-additive-explanations-analysis" class="title-slide slide level1"><h1>SHAP (<font color = 'red'>SH</font>apley <font color = 'red'>A</font>dditive ex<font color = 'red'>P</font>lanations) analysis</h1><ul>
+<li>originally developed to estimate the importance of an individual player in a collaborative team<br />
+</li>
+<li>meant to distribute total gain or payoff among players, depending on the relative importance of their contributions<br />
+</li>
+<li>Shapley values can also be rationalized as a fair or reasonable allocation of feature importance given a particular model output<br />
+</li>
+<li>Shapley values represent estimates of feature importance (magnitude of the contribution) as well as the direction (sign)<br />
+</li>
+<li>features with positive sign contribute to the prediction of activity, whereas features with negative sign contribute to the prediction of inactivity (<em>i.e.</em>, negative contribution to activity prediction)</li>
+</ul></section>
+<section id="comparative-interpretation" class="slide level2">
+<h2>Comparative interpretation</h2>
+<p><br><br></p>
+<center>
+<img src="images/SHAP01.png" alt="SHAP force plot" width="600"/>
+</center>
+<ul>
+<li>red = positive feature contribution; blue = negative feature contribution<br />
+</li>
+<li>white numbers refer to top-ranked features<br />
+</li>
+<li>the top-1 and the top-5 features are mapped</li>
+</ul>
+</section>
+<section id="interpretation-of-activity-predictions" class="slide level2">
+<h2>Interpretation of activity predictions</h2>
+<p><br></p>
+<center>
+<img src="images/SHAP02.png" alt="SHAP force plot" width="600"/>
+</center>
+</section></section>
+<section><section id="sali-structure-activity-landscape-index" class="title-slide slide level1"><h1>SALI (<font color = 'red'>S</font>tructure-<font color = 'red'>A</font>ctivity <font color = 'red'>L</font>andscape <font color = 'red'>I</font>ndex)</h1><p><br></p>
+<ul>
+<li>a simple means of identifying pairs of compounds where small changes in chemical structure brings about a large change in biological activity or physical properties<br />
+</li>
+<li>these changes often identify parts of the molecule that are most important for activity<br />
+</li>
+<li>plan synthetic targets including / excluding these parts of the molecule</li>
+</ul>
+<p><br></p>
+<p><span class="math display">\[SALI_{i,j} = \frac{|A_{i} - A_{j}|}{1 - sim(i,j)}\]</span></p></section>
+<section id="readily-identify-trends" class="slide level2">
+<h2>Readily (!?) identify trends …</h2>
+<center>
+<img src="images/SALI01.png" alt="SALI" width="600"/>
+</center>
+</section>
+<section id="cut-and-paste-from-a-jupyter-notebook" class="slide level2">
+<h2>… cut-and-paste from a Jupyter notebook</h2>
+<p><br></p>
+<center>
+<img src="images/SALI02.png" alt="SALI" width="800"/>
+</center>
+</section></section>
+<section><section id="matched-molecular-pairs" class="title-slide slide level1"><h1>Matched Molecular Pairs</h1><p>Matched molecular pair analysis (MMPA) enables the automated and systematic compilation of medicinal chemistry rules from compound/property data sets.</p>
+<p>The overall process is:</p>
+<ol type="1">
+<li><p>Fragment structures in a SMILES file, to produce fragments.</p></li>
+<li><p>Index the fragments to produces matched molecular pairs. (you might include property information at this point)</p></li>
+<li><p>Load property information.</p></li>
+<li><p>Find transforms for a given structure; and/or</p></li>
+<li><p>Predict a property for a structure given the known property for another structure</p></li>
+</ol></section>
+<section id="identify-pairs" class="slide level2">
+<h2>Identify pairs</h2>
+<center>
+<img src="images/MMP01.png" alt="MMP-1" width="800"/>
+</center>
+</section>
+<section id="workflow-schematic" class="slide level2">
+<h2>Workflow schematic</h2>
+<center>
+<img src="images/MMP02.png" alt="MMP-2" width="800"/>
+</center>
+</section>
+<section id="building-rule-sets" class="slide level2">
+<h2>Building rule sets</h2>
+<center>
+<img src="images/MMP03.png" alt="MMP-2" width="800"/>
+</center>
+</section>
+<section id="mmp-gui" class="slide level2">
+<h2>MMP GUI</h2>
+<p><br></p>
+<center>
+<img src="images/MMP04.png" alt="MMP-2" width="800"/>
+</center>
+</section></section>
+<section id="never-enough-time" class="title-slide slide level1"><h1>Never enough time …</h1><ul>
+<li>Maximum Common Substructure<br />
+</li>
+<li>Structure alerts<br />
+</li>
+<li>Read across<br />
+</li>
+<li>Network analysis</li>
+</ul></section>
+<section id="its-about" class="title-slide slide level1"><h1>It’s about …</h1><padding text-align = 'center'> <br><br><br><br>
+<h2>
+<font color = 'blue'>“Data! data! data!”</font> he cried impatiently. <br> “I can’t make bricks without clay.”
+</h2>
+<h4 align="right">
+The Adventures of the Copper Beeches
+</h4>
+<h4 align="right">
+Sir Arthur Conan Doyle
+</h4>
+<p></padding></p></section>
+    </div>
+  </div>
+
+  <script src="DraftPresentation_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="DraftPresentation_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'whiteboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'DraftPresentation_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

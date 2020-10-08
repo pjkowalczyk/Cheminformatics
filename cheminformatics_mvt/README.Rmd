@@ -1,0 +1,35 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Cheminformatics: Minimum Viable Templates
+
+This repository includes a numer of **minimum viable templates** (presented as reproducible examples) for the various activities in a cheminformatics study.  
+Input and output files for each template are available in the **/data** folder. One should be able to execute the template using the input, and generate the output.
+
+### 01 Data Acquisition  
+
+### 02 Calculating Features & Fingerprints  
+
+### 03 Filtering & Substructure Searching  
+
+### 04 Similarity  
+
+### 05 Clustering
+
+### 06 Maximum Common Substructure  
+
+### 07 Structure Alerts  
+
+### 08 Matched Molecular Pairs  
+
+### 09 Machine Learning  
+
+- regressioin  
+- classification  
+
+### 10 Read Across

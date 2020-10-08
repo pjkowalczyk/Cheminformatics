@@ -1,0 +1,13 @@
+"Reaction SMILES for all reactions shown in Figures of publication: ""Big Data from Pharmaceutical Patents: A Computational Analysis of Medicinal ChemistsÕ Bread and Butter""",,,
+,,,
+Figure ID,Patent ID,Rxn type,Reaction SMILES
+Figure 4 rxn 1,US03953595,Williamson ether synthesis,ClCC1=CC=CC=C1.OC(=O)C1=CC(O)=CC(Cl)=C1>CN(C)C=O.[H-].[Na+]>OC(=O)C1=CC(Cl)=CC(OCC2=CC=CC=C2)=C1
+Figure 4 rxn 2,US08957074B2,Chloro N-arylation,ClC1=NC(Cl)=C(Br)C=N1.CC(C)(C#N)C1=CC=C(N)C=C1>CC#N.CCN(C(C)C)C(C)C>CC(C)(C#N)C1=CC=C(NC2=C(Br)C=NC(Cl)=N2)C=C1
+Figure 4 rxn 3,US03946018,Amide Schotten-Baumann,ClCC(Cl)=O.CC1(C)C(=O)NC(C2=CC=C(N)C=C2)C2=CC=CC=C12>CC(O)=O.CCN(CC)CC>CC1(C)C(=O)NC(C2=CC=C(NC(=O)CCl)C=C2)C2=CC=CC=C12
+Figure 4 rxn 4,US09073947B2,Carboxylic acid + amine reaction,OC(=O)C=C.NC1=CC=CC(OC2=NC=NC(N)=C2C2=CC=C(OC3=CC=CC=C3)C=C2)=C1>C1COCCO1.ClP(=O)(N1CCOC1=O)N1CCOC1=O.CCN(C(C)C)C(C)C>NC1=C(C(OC2=CC(NC(=O)C=C)=CC=C2)=NC=N1)C1=CC=C(OC2=CC=CC=C2)C=C1
+,,,
+,,,
+Figure 10 rxn 1,US07268230B2,SNAr ether synthesis,COC1=C(OCCN2CCN(CC2)C(C)=O)C=C2N=CN=C(Cl)C2=C1.CC1=CC2=C(F)C(O)=CC=C2N1>CN(C)C(C)=O.CC(C)=O.[O-]C([O-])=O.[K+].[K+]>COC1=C(OCCN2CCN(CC2)C(C)=O)C=C2N=CN=C(OC3=CC=C4NC(C)=CC4=C3F)C2=C1
+Figure 10 rxn 2,US07268230B2,Bromo N-alkylation,CC(=O)N1CCNCC1.COC1=C(OCCBr)C=C2N=CN=C(OC3=CC=C4NC(C)=CC4=C3F)C2=C1>O=P(C1=CC=CC=C1)(C1=CC=CC=C1)C1=CC=CC=C1.CN(C)C=O>COC1=C(OCCN2CCN(CC2)C(C)=O)C=C2N=CN=C(OC3=CC=C4NC(C)=CC4=C3F)C2=C1
+Figure 10 rxn 3,US07268230B2,Mitsunobu aryl ether synthesis,CC(=O)N1CCN(CCO)CC1.COC1=C(O)C=C2N=CN=C(OC3=CC=C4NC(C)=CC4=C3F)C2=C1>ClCCl.C1=CC=C(C=C1)P(C1=CC=CC=C1)C1=CC=CC=C1.CC(C)OC(=O)N=NC(=O)OC(C)C>COC1=C(OCCN2CCN(CC2)C(C)=O)C=C2N=CN=C(OC3=CC=C4NC(C)=CC4=C3F)C2=C1
+Figure 10 rxn 4,US07268230B2,Williamson ether synthesis,CC(=O)N1CCN(CCCl)CC1.COC1=C(O)C=C2N=CN=C(OC3=CC=C4NC(C)=CC4=C3F)C2=C1>O.[O-]C([O-])=O.[K+].[K+].CN1CCCC1=O>COC1=C(OCCN2CCN(CC2)C(C)=O)C=C2N=CN=C(OC3=CC=C4NC(C)=CC4=C3F)C2=C1
